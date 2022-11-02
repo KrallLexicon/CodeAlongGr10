@@ -8,5 +8,10 @@ namespace CodeAlongGr10.Controllers
         {
             return View();
         }
+        public IActionResult About()
+        {
+            ViewBag.Message = "This is a message from the controller!";
+            return View();
+        }
     }
 }
