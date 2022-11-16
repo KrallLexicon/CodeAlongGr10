@@ -3,6 +3,7 @@ using CodeAlongGr10.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeAlongGr10.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116091636_Added Car table and seeded Car data")]
+    partial class AddedCartableandseededCardata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,28 +22,6 @@ namespace CodeAlongGr10.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CarPerson", b =>
-                {
-                    b.Property<string>("CarsRegNumber")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PeopleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CarsRegNumber", "PeopleId");
-
-                    b.HasIndex("PeopleId");
-
-                    b.ToTable("CarPerson");
-
-                    b.HasData(
-                        new
-                        {
-                            CarsRegNumber = "ABC-123",
-                            PeopleId = "c2fdfbce-ee16-4bde-be11-762854a8f654"
-                        });
-                });
 
             modelBuilder.Entity("CodeAlongGr10.Models.Car", b =>
                 {
@@ -91,40 +71,25 @@ namespace CodeAlongGr10.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c2fdfbce-ee16-4bde-be11-762854a8f654",
+                            Id = "d1b78b2f-4f15-4ec2-84ce-64918da23932",
                             Age = 34,
                             Name = "Jonathan Krall",
                             PhoneNumber = "0737090202"
                         },
                         new
                         {
-                            Id = "47e00f99-b7a7-4c9a-8f3a-220ae409dbd1",
+                            Id = "97c03e0a-5c99-4a5e-870b-e1b1effb0738",
                             Age = 59,
                             Name = "Sven Svensson",
                             PhoneNumber = "123456"
                         },
                         new
                         {
-                            Id = "7ee8a988-beff-4aaa-9bff-f92980fd48b3",
+                            Id = "448ac5ec-2565-4a1b-9908-b2655d64ddf7",
                             Age = 26,
                             Name = "Anna Andersson",
                             PhoneNumber = "845621"
                         });
-                });
-
-            modelBuilder.Entity("CarPerson", b =>
-                {
-                    b.HasOne("CodeAlongGr10.Models.Car", null)
-                        .WithMany()
-                        .HasForeignKey("CarsRegNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CodeAlongGr10.Models.Person", null)
-                        .WithMany()
-                        .HasForeignKey("PeopleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

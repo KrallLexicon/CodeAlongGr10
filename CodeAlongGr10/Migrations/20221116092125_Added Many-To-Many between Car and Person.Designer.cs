@@ -3,6 +3,7 @@ using CodeAlongGr10.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeAlongGr10.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116092125_Added Many-To-Many between Car and Person")]
+    partial class AddedManyToManybetweenCarandPerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,13 +36,6 @@ namespace CodeAlongGr10.Migrations
                     b.HasIndex("PeopleId");
 
                     b.ToTable("CarPerson");
-
-                    b.HasData(
-                        new
-                        {
-                            CarsRegNumber = "ABC-123",
-                            PeopleId = "c2fdfbce-ee16-4bde-be11-762854a8f654"
-                        });
                 });
 
             modelBuilder.Entity("CodeAlongGr10.Models.Car", b =>
@@ -91,21 +86,21 @@ namespace CodeAlongGr10.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c2fdfbce-ee16-4bde-be11-762854a8f654",
+                            Id = "d10534fb-1812-43f0-8cea-5d211458d0b3",
                             Age = 34,
                             Name = "Jonathan Krall",
                             PhoneNumber = "0737090202"
                         },
                         new
                         {
-                            Id = "47e00f99-b7a7-4c9a-8f3a-220ae409dbd1",
+                            Id = "d0c17b10-e648-4c6d-8258-19cd5f8c4ade",
                             Age = 59,
                             Name = "Sven Svensson",
                             PhoneNumber = "123456"
                         },
                         new
                         {
-                            Id = "7ee8a988-beff-4aaa-9bff-f92980fd48b3",
+                            Id = "506f160f-fa70-4b39-be15-99cfc192edd9",
                             Age = 26,
                             Name = "Anna Andersson",
                             PhoneNumber = "845621"

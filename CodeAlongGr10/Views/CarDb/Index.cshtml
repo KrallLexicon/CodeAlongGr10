@@ -1,0 +1,31 @@
+﻿@model List<Car>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List of cars</h1>
+
+<div><a asp-action="Create" class="btn btn-primary">Create a new car</a></div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Reg number</th>
+            <th>Brand</th>
+            <th>Model</th>            
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var car in Model)
+        {
+            <tr>
+                <td>@car.RegNumber</td>
+                <td>@car.Brand</td>
+                <td>@car.CarModel</td>
+                <td><a asp-action="Delete" asp-route-regnumber=@car.RegNumber class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
