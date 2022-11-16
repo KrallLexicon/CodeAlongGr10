@@ -46,7 +46,7 @@ namespace CodeAlongGr10.Controllers
             {
                 ViewBag.People = new SelectList(_context.People, "Id", "Name");
                 ViewBag.Cars = new SelectList(_context.Cars.Where(x=>x.RegNumber != regnumber), "RegNumber", "RegNumber");
-                ViewBag.Message = $"You already own the car with reg number: {car.RegNumber!}";
+                ViewBag.Message = $"You already own the car with reg number: {car.RegNumber}!";
                 return View(); 
             }
 
