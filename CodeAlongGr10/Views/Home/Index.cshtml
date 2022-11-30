@@ -8,7 +8,7 @@
 <h2>This is Index</h2>
 
 
-<div class="row">
+@*<div class="row">
     <h6 class="col">Id</h6>
     <h6 class="col">Name</h6>
     <h6 class="col">Age</h6>
@@ -18,4 +18,29 @@
 @foreach (var person in Model.tempList)
 {
     <partial name="_personPartial" model="person" />
+}*@
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <p>Hello! Please login!</p>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("User") && User.IsInRole("Admin"))
+    {
+        <p>Hello User & Admin!</p>
+    }
+    else if (User.IsInRole("User"))
+    {
+        <p>Hello User!</p>
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        <p>Hello Admin!</p>
+    }
+    else
+    {
+        <p>Hello logged in visitor!</p>
+    }
 }

@@ -1,9 +1,11 @@
 ﻿using CodeAlongGr10.Data;
 using CodeAlongGr10.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodeAlongGr10.Controllers
 {
+    [Authorize]
     public class CarDbController : Controller
     {
         readonly ApplicationDbContext _context;
