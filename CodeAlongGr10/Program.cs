@@ -21,7 +21,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
+builder.Services.AddCors(p => p.AddPolicy("corsPolicy", builder =>
+{
+    builder.WithOrigins("http://localhost:3000")
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+}));
 
 
 var app = builder.Build();
@@ -30,6 +35,7 @@ app.UseSession();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCors("corsPolicy");
 app.UseAuthentication();
 app.UseAuthorization(); 
 app.MapRazorPages(); 
