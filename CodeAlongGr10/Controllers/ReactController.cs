@@ -2,6 +2,8 @@
 using CodeAlongGr10.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text.Json.Nodes;
 
 namespace CodeAlongGr10.Controllers
 {
@@ -38,5 +40,25 @@ namespace CodeAlongGr10.Controllers
             }
             return StatusCode(404);
         }
+
+        [HttpPost("create")]
+        public IActionResult Create(JsonObject person)
+        {
+            string jsonPerson = person.ToString();
+
+            Person personToCreate = JsonConvert.DeserializeObject<Person>(jsonPerson);
+
+            if(personToCreate != null)
+            {
+                _context.People.Add(personToCreate);
+                _context.SaveChanges();
+
+                return StatusCode(200);
+            }
+            return StatusCode(404);
+
+
+        }
+
     }
 }
